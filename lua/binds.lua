@@ -15,6 +15,7 @@ vim.cmd[[ command! Gqf GitGutterQuickFix | copen ]]
 
 --{{{ customs :: normal
 keymap('n', 'Q', '<nop>', { noremap = true })
+keymap('n', '<BS>', '<Cmd>noh<CR>', { noremap = true })
 keymap('n', ';', ':', { noremap = true })
 keymap('n', ':', ';', { noremap = true })
 keymap('n', '<C-t>', ':lua require("funcs").toggle_transparency()<CR>', { noremap= true })
@@ -62,7 +63,7 @@ keymap('n', '<C-M-n>', ':NvimTreeFindFile<CR>', { noremap= true })
 --}}}
 
 --{{{ bufferline
-keymap('n', '<Leader><space>', ':BufferLinePick<CR>', opts)
+keymap('n', '<space><space>', ':BufferLinePick<CR>', opts)
 keymap('n', 'gx', ':BufferLinePickClose<CR>', opts)
 keymap('n', '<A-,>', '<Cmd>BufferLineMovePrev<CR>', opts)
 keymap('n', '<A-.>', '<Cmd>BufferLineMoveNext<CR>', opts)
@@ -94,18 +95,36 @@ keymap('n', '<Leader>8', '<Cmd>lua require("harpoon.ui").nav_file(8)<CR>', opts)
 keymap('n', '<Leader>9', '<Cmd>lua require("harpoon.ui").nav_file(9)<CR>', opts)
 --}}}
 
+
 --{{{ hop
 keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
 keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-keymap('n', '<Leader>f', "<Cmd>HopChar1<CR>", {})
-keymap('n', '<Leader>df', "<Cmd>HopChar2<CR>", {})
-keymap('n', '<Leader>w', "<Cmd>HopWord<CR>", {})
-keymap('n', '<Leader>fw', "<Cmd>HopWordAC<CR>", {})
-keymap('n', '<Leader>Fw', "<Cmd>HopWordBC<CR>", {})
+keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
+keymap('n', '<space>f', "<Cmd>HopChar1<CR>", {})
+keymap('o', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
+keymap('o', '<space>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
+keymap('v', '<space>f', "<Cmd>HopChar1<CR>", {})
+keymap('n', '<space>df', "<Cmd>HopChar2<CR>", {})
+keymap('n', '<space>w', "<Cmd>HopWord<CR>", {})
+keymap('n', '<space>fw', "<Cmd>HopWordAC<CR>", {})
+keymap('n', '<space>Fw', "<Cmd>HopWordBC<CR>", {})
+keymap('n', '<space>/', "<Cmd>HopPattern<CR>", {})
+--}}}
+
+--{{{ fzf
+keymap('n', '<Leader>b', '<Cmd>Buffers<CR>', opts)
+keymap('n', '<Leader>f', '<Cmd>Files<CR>', opts)
 --}}}
 
 vim.cmd [[
 let g:fzf_buffers_jump = 1
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
+  \ 'prefix': '^.*$',
+  \ 'source': 'rg -n ^ --color always',
+  \ 'options': '--ansi --delimiter : --nth 3..',
+  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
 ]]
+
 
