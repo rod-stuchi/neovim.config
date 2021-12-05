@@ -7,7 +7,7 @@ vim.g.mapleader = ","
 vim.b.mapleader = ","
 
 require("globals")
-require("plugin")
+require("package-manager")
 require("opts")
 require("binds")
 
