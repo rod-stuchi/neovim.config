@@ -25,24 +25,24 @@ autocmd! BufWinEnter * if exists('b:winview') | call winrestview(b:winview) | un
 autocmd FileType css,javascript,json,scss setl iskeyword+=-
 ]])
 
--- vim.cmd([[
--- augroup highlight_yank
---   autocmd!
---   " autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
---   autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=400 }
--- augroup END
--- ]])
+vim.cmd([[
+augroup highlight_yank
+  autocmd!
+  " autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
+  autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=400 }
+augroup END
+]])
 
--- vim.cmd([[
--- let g:fzf_preview_window = ['right:60%', 'ctrl-/']
--- 
--- command! -bang -nargs=? -complete=dir Files
---     \ call fzf#vim#files(<q-args>,
---     \ fzf#vim#with_preview({'options': [
---     \   '--bind=tab:toggle+up,shift-tab:toggle+down',
---     \ ]})
---   \, <bang>0)
--- ]])
+vim.cmd([[
+let g:fzf_preview_window = ['right:60%', 'ctrl-/']
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>,
+    \ fzf#vim#with_preview({'options': [
+    \   '--bind=tab:toggle+up,shift-tab:toggle+down',
+    \ ]})
+  \, <bang>0)
+]])
 
 
 -- vim.cmd([[ hi Folded guifg=#0e1219 ]])
