@@ -1,9 +1,9 @@
 -- better buffer handling
 vim.o.hidden = true
 -- enable mouse
-vim.o.mouse = "a"                          
+vim.o.mouse = "a"
 -- store more commands
-vim.o.history = 3000                     
+vim.o.history = 3000
 -- no borring sound
 vim.o.belloff = "all"
 -- show incomplete moviments at bottom
@@ -11,7 +11,7 @@ vim.o.showcmd = true
 -- show current mode at bottom
 vim.o.showmode = true
 -- see changes in substitutes command
-vim.o.inccommand = "split"                 
+vim.o.inccommand = "split"
 -- number at current line
 vim.o.number = true
 -- show relative number

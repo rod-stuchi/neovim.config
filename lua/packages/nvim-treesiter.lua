@@ -6,6 +6,9 @@ function M.init(use)
     run = '<Cmd>TSUpdate',
     config = function()
       require'nvim-treesitter.configs'.setup {
+        autotag = {
+          enable = true,
+        },
         ensure_installed = {
           "bash",
           "c",

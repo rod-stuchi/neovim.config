@@ -9,10 +9,11 @@ vim.b.mapleader = ","
 require("globals")
 require("package-manager")
 require("opts")
-require("binds")
+require("mappings")
 
--- vim.cmd [[colorscheme onenord]]
--- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme onedark]]
+require("funcs").toggle_transparency()
+
 -- vim.cmd([[
 -- highlight Normal guibg=none ctermbg=none
 -- highlight NonText guibg=none ctermbg=none
@@ -33,19 +34,6 @@ augroup highlight_yank
 augroup END
 ]])
 
-vim.cmd([[
-let g:fzf_preview_window = ['right:60%', 'ctrl-/']
-
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>,
-    \ fzf#vim#with_preview({'options': [
-    \   '--bind=tab:toggle+up,shift-tab:toggle+down',
-    \ ]})
-  \, <bang>0)
-]])
-
-
--- vim.cmd([[ hi Folded guifg=#0e1219 ]])
 
 -- vim.cmd([[au VimEnter * highlight Folded guifg=#3e506f]])
 -- vim.cmd([[au ColorScheme * highlight Folded guifg=#3e506f]])
@@ -53,3 +41,4 @@ vim.cmd([[au VimEnter * highlight Folded guifg=#465a7d]])
 vim.cmd([[au ColorScheme * highlight Folded guifg=#465a7d]])
 vim.cmd([[au VimEnter * highlight IncSearch guifg=#ab7f54 guibg=#00000000]])
 vim.cmd([[au ColorScheme * highlight IncSearch guifg=#ab7f54 guibg=#00000000]])
+

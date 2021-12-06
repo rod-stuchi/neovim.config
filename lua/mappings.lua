@@ -2,7 +2,8 @@
 -- vim.api.nvim_commnad("command! TSRehighlight :write | edit | TSBufEnable hightlight")
 
 local opts = {noremap = true, silent = true}
-local keymap = vim.api.nvim_set_keymap 
+
+local keymap = vim.api.nvim_set_keymap
 -- P(keymap)
 
 
@@ -46,6 +47,12 @@ keymap('x', 'gai', '<Plug>(EasyAlignAlign)', {})
 keymap('i', '<F6>', '<C-R>=strftime("%Y-%m-%d")<CR>', { noremap = true })
 --}}}
 
+--{{{ leader
+-- cd directory current path
+vim.cmd [[
+nnoremap <leader>cd :cd %:p:h<CR> :echom "CD to [" . expand("%:p:h") . "]"<CR>
+]]
+--}}}
 
 --{{{ vim-mark
 keymap('n', '<Leader>M', '<Plug>MarkToggle', { noremap = false })
@@ -102,8 +109,10 @@ keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hin
 keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
 keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
 keymap('n', '<space>f', "<Cmd>HopChar1<CR>", {})
-keymap('o', '<space>f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
-keymap('o', '<space>F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
+keymap('o', '<space>f', "<Cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
+keymap('o', '<space>t', "<Cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = false, inclusive_jump = false })<cr>", {})
+keymap('o', '<space>F', "<Cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = true })<cr>", {})
+keymap('o', '<space>T', "<Cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = false, inclusive_jump = false })<cr>", {})
 keymap('v', '<space>f', "<Cmd>HopChar1<CR>", {})
 keymap('n', '<space>df', "<Cmd>HopChar2<CR>", {})
 keymap('n', '<space>w', "<Cmd>HopWord<CR>", {})
@@ -113,18 +122,15 @@ keymap('n', '<space>/', "<Cmd>HopPattern<CR>", {})
 --}}}
 
 --{{{ fzf
-keymap('n', '<Leader>b', '<Cmd>Buffers<CR>', opts)
-keymap('n', '<Leader>f', '<Cmd>Files<CR>', opts)
---}}}
-
+-- keymap('n', '<Leader>f', '<Cmd>FzfLua files<CR>', { noremap = true })
+-- keymap('n', '<Leader>b', '<Cmd>FzfLua buffers<CR>', { noremap = true })
+-- keymap('n', '<Leader>g', '<Cmd>FzfLua git_files<CR>', { noremap = true })
+keymap('n', '<Leader>b', '<Cmd>Buffers<CR>', { noremap = true })
+keymap('n', '<Leader>f', '<Cmd>Files<CR>', { noremap = true })
+keymap('n', '<Leader>g', '<Cmd>GFiles<CR>', { noremap = true })
 vim.cmd [[
-let g:fzf_buffers_jump = 1
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
-inoremap <expr> <c-x><c-l> fzf#vim#complete(fzf#wrap({
-  \ 'prefix': '^.*$',
-  \ 'source': 'rg -n ^ --color always',
-  \ 'options': '--ansi --delimiter : --nth 3..',
-  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
+  nnoremap <silent> <Leader>rg :Rg \b<C-R><C-W>\b<CR>
+  autocmd VimEnter * nnoremap <silent> <Leader>d :Files <C-R>=expand('%:h')<CR><CR>
 ]]
-
+--}}}
 

@@ -60,8 +60,9 @@ function M.init(use)
             --   return string.format('%s|%s', opts.id, opts.lower(opts.ordinal))
             -- end,
             numbers = function(opts)
-              return string.format('%s', opts.id)
+              return string.format('%s', opts.lower(opts.id))
             end,
+            -- numbers = 'none',
           },
         })
     end
