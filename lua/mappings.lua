@@ -30,16 +30,11 @@ keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true })
 keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { noremap = true })
 keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true })
 keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true })
-
-keymap('n', 'ga', '<Plug>(EasyAlign)', {})
-keymap('n', 'gai', '<Plug>(EasyAlignAlign)', {})
 --}}}
 
 --{{{ customs :: visual
 keymap('v', ';', ':', { noremap = true })
 keymap('v', ':', ';', { noremap = true })
-keymap('x', 'ga', '<Plug>(EasyAlign)', {})
-keymap('x', 'gai', '<Plug>(EasyAlignAlign)', {})
 --}}}
 
 --{{{ customs :: insert
@@ -134,3 +129,9 @@ vim.cmd [[
 ]]
 --}}}
 
+--{{{ EasyAlign
+-- Start interactive EasyAlign in visual mode (e.g. vipga)
+keymap('x', 'ga', '<Plug>(EasyAlign)', {})
+-- Start interactive EasyAlign for a motion/text object (e.g. gaip)
+keymap('n', 'ga', '<Plug>(EasyAlign)', {})
+--}}

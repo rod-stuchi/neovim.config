@@ -28,11 +28,12 @@ require "packages.vim-mark".init(use)
 require "packages.fzf".init(use)
 require "packages.fzf-lua".init(use)
 require "packages.hop".init(use)
-require "packages.nvim-tree".init(use)
+require "packages.nvim-tree".init(use) -- also: nerdtree
 require "packages.lualine".init(use)
--- require "packages.tagalong".init(use)
-require "packages.nvim-ts-autotag".init(use)
-require "packages.gitsigns".init(use)
+require "packages.nvim-ts-autotag".init(use) -- also: tagalong
+require "packages.gitsigns".init(use) -- also: vim-gitgutter
+require "packages.nvim-colorizer".init(use)
+require "packages.vim-easy-align".init(use)
 
 -- Themes
 -- require "themes.catppuccin".init(use)

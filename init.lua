@@ -35,8 +35,6 @@ augroup END
 ]])
 
 
--- vim.cmd([[au VimEnter * highlight Folded guifg=#3e506f]])
--- vim.cmd([[au ColorScheme * highlight Folded guifg=#3e506f]])
 vim.cmd([[au VimEnter * highlight Folded guifg=#465a7d]])
 vim.cmd([[au ColorScheme * highlight Folded guifg=#465a7d]])
 vim.cmd([[au VimEnter * highlight IncSearch guifg=#ab7f54 guibg=#00000000]])
