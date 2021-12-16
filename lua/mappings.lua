@@ -16,12 +16,17 @@ vim.cmd[[ command! Gqf GitGutterQuickFix | copen ]]
 
 --{{{ customs :: normal
 keymap('n', 'Q', '<nop>', { noremap = true })
-keymap('n', '<BS>', '<Cmd>noh<CR>', { noremap = true })
 keymap('n', ';', ':', { noremap = true })
 keymap('n', ':', ';', { noremap = true })
+keymap('n', '<BS>', '<Cmd>noh<CR>', { noremap = true })
 keymap('n', '<C-t>', ':lua require("funcs").toggle_transparency()<CR>', { noremap= true })
+keymap('n', '<M-o>', ':copen<CR>', opts)
+keymap('n', '<M-O>', ':cclose<CR>', opts)
 keymap('n', '<M-[>', ':cprevious<CR>', opts)
 keymap('n', '<M-]>', ':cnext<CR>', opts)
+keymap('n', '<M-q>', ':set cursorcolumn!<Bar>set cursorline!<CR>', { noremap = true})
+keymap('n', '<M-w>', ':set number!<Bar>set relativenumber!<CR>', { noremap = true})
+keymap('n', '<M-e>', ':set list!<CR>', { noremap = true})
 
 -- moving lines
 keymap('n', '<A-j>', ':m .+1<CR>==', { noremap = true })
@@ -60,7 +65,7 @@ keymap('x', '<Leader>*', '<Plug>MarkIWhiteSet', { noremap = false })
 --{{{ nvim-tree
 keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap= true })
 keymap('n', '<C-M-r>', ':NvimTreeRefresh<CR>', { noremap= true })
-keymap('n', '<C-M-n>', ':NvimTreeFindFile<CR>', { noremap= true })
+keymap('n', '<C-M-n>', ':NvimTreeFindFileToggle<CR>', { noremap= true })
 -- " NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
 --}}}
 

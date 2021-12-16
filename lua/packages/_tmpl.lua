@@ -2,7 +2,7 @@ local M = {}
 
 function M.init(use)
   return use {
-    'AndrewRadev/tagalong.vim',
+    'user/plugin',
   }
 end
 
