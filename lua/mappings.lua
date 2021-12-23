@@ -16,17 +16,44 @@ vim.cmd[[ command! Gqf GitGutterQuickFix | copen ]]
 
 --{{{ customs :: normal
 keymap('n', 'Q', '<nop>', { noremap = true })
+
+keymap('n', '<Up>', '<C-w><up>', { noremap = false })
+keymap('o', '<Up>', '<C-w><up>', { noremap = false })
+keymap('n', '<Down>', '<C-w><down>', { noremap = false })
+keymap('o', '<Down>', '<C-w><down>', { noremap = false })
+keymap('n', '<Left>', '<C-w><left>', { noremap = false })
+keymap('o', '<Left>', '<C-w><left>', { noremap = false })
+keymap('n', '<Right>', '<C-w><right>', { noremap = false })
+keymap('o', '<Right>', '<C-w><right>', { noremap = false })
+
 keymap('n', ';', ':', { noremap = true })
 keymap('n', ':', ';', { noremap = true })
 keymap('n', '<BS>', '<Cmd>noh<CR>', { noremap = true })
-keymap('n', '<C-t>', ':lua require("funcs").toggle_transparency()<CR>', { noremap= true })
-keymap('n', '<M-o>', ':copen<CR>', opts)
-keymap('n', '<M-O>', ':cclose<CR>', opts)
-keymap('n', '<M-[>', ':cprevious<CR>', opts)
-keymap('n', '<M-]>', ':cnext<CR>', opts)
-keymap('n', '<M-q>', ':set cursorcolumn!<Bar>set cursorline!<CR>', { noremap = true})
-keymap('n', '<M-w>', ':set number!<Bar>set relativenumber!<CR>', { noremap = true})
-keymap('n', '<M-e>', ':set list!<CR>', { noremap = true})
+keymap('n', '<C-t>', '<Cmd>lua require("funcs").toggle_transparency()<CR>', { noremap= true })
+keymap('n', '<M-o>', '<Cmd>copen<CR>', opts)
+keymap('n', '<M-O>', '<Cmd>cclose<CR>', opts)
+keymap('n', '<M-[>', '<Cmd>cprevious<CR>', opts)
+keymap('n', '<M-]>', '<Cmd>cnext<CR>', opts)
+keymap('n', '<M-q>', '<Cmd>set cursorcolumn!<Bar>set cursorline!<CR>', { noremap = true})
+keymap('n', '<M-w>', '<Cmd>set number!<Bar>set relativenumber!<CR>', { noremap = true})
+keymap('n', '<M-e>', '<Cmd>set list!<CR>', { noremap = true})
+
+-- Math operations in lines, resolves line expression, and SUM, AVG all lines with description on left:
+-- abc = 12 ^12
+-- cde = 3 * 4 + 2
+-- keyboard <F3> key switch with problem (need to be replaced)
+keymap('n', '<F4>', '<Cmd>w !/home/rods/.scripts/sum.sh<CR>', opts)
+
+-- insert current date in yyyy-mm-dd format
+keymap('n', '<F6>', 'i<C-R>=strftime("%Y-%m-%d")<CR><Esc>l', { noremap = true })
+
+-- insert current date in pt_BR format
+-- dd/mmm (ddd), like 15/mar (qui)
+keymap('n', '<F7>', ':lang pt_BR.UTF-8<CR>:let @@=strftime("%d/%b (%a)")<CR>:normal! p<esc>o<esc>:lang en_US.UTF-8<CR>', opts)
+
+keymap('n', '<C-w>o', ':mksession! /tmp/vim-session.vim<CR>:wincmd o<CR>', opts)
+keymap('n', '<C-w>u', ':source /tmp/vim-session.vim<CR>', opts)
+
 
 -- moving lines
 keymap('n', '<A-j>', ':m .+1<CR>==', { noremap = true })
@@ -50,9 +77,23 @@ keymap('i', '<F6>', '<C-R>=strftime("%Y-%m-%d")<CR>', { noremap = true })
 --{{{ leader
 -- cd directory current path
 vim.cmd [[
+" cd directory current path
 nnoremap <leader>cd :cd %:p:h<CR> :echom "CD to [" . expand("%:p:h") . "]"<CR>
+
+" yank in clipboard file name
+" nnoremap <silent> <Leader>yn :let @*=expand("%")<CR> :echom "copied: [" . expand("%") . "] use middle click"<CR>
+" yank in clipboard file path
+" nnoremap <silent> <Leader>yp :let @*=expand("%:p")<CR> :echom "copied: [" . expand("%:p") . "] use middle click"<CR>
+
+" copy filename clipboard
+nnoremap <silent> <Leader>cn :let @+=expand("%")<CR> :echom "copied: [" . expand("%") . "] use ctrl+v"<CR>
+" copy file path to clipboard
+nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR> :echom "copied: [" . expand("%:p") . "] use ctrl+v"<CR>
+
 ]]
 --}}}
+
+
 
 --{{{ vim-mark
 keymap('n', '<Leader>M', '<Plug>MarkToggle', { noremap = false })
@@ -101,7 +142,6 @@ keymap('n', '<Leader>7', '<Cmd>lua require("harpoon.ui").nav_file(7)<CR>', opts)
 keymap('n', '<Leader>8', '<Cmd>lua require("harpoon.ui").nav_file(8)<CR>', opts)
 keymap('n', '<Leader>9', '<Cmd>lua require("harpoon.ui").nav_file(9)<CR>', opts)
 --}}}
-
 
 --{{{ hop
 keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
