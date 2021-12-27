@@ -6,12 +6,12 @@ vim.cmd("syntax on")
 vim.g.mapleader = ","
 vim.b.mapleader = ","
 
-require("globals")
-require("manager-pkg")
-require("options")
-require("mappings")
-require("autocmds")
+require("rods/globals")
+require("rods/packer")
+require("rods/options")
+require("rods/mappings")
+require("rods/autocmds")
 
 vim.cmd [[colorscheme onedark]]
-require("funcs").toggle_transparency()
+require("rods/funcs").toggle_transparency()
 
