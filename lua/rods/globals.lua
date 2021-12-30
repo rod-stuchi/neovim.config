@@ -4,7 +4,7 @@ P = function(v)
 end
 
 Has_value = function(tab, val)
-    for index, value in ipairs(tab) do
+    for _, value in ipairs(tab) do
         if value == val then
             return true
         end
@@ -12,3 +12,4 @@ Has_value = function(tab, val)
 
     return false
 end
+

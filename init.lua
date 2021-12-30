@@ -1,8 +1,3 @@
-vim.g["python_host_prog"] = "/usr/bin/python2"
-vim.g["python3_host_prog"] = "/usr/bin/python3"
-
-vim.cmd("syntax on")
-
 vim.g.mapleader = ","
 vim.b.mapleader = ","
 
@@ -12,6 +7,5 @@ require("rods/options")
 require("rods/mappings")
 require("rods/autocmds")
 
-vim.cmd [[colorscheme onedark]]
-require("rods/funcs").toggle_transparency()
-
+-- vim.lsp.set_log_level("debug")
+-- :lua vim.cmd('e'..vim.lsp.get_log_path())

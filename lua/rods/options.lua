@@ -1,5 +1,10 @@
 local opt = vim.opt -- set-option
-local bo = vim.bo   -- buffer-scoped
+-- local bo = vim.bo   -- buffer-scoped
+
+vim.g["python_host_prog"] = "/usr/bin/python2"
+vim.g["python3_host_prog"] = "/usr/bin/python3"
+
+vim.cmd("syntax on")
 
 opt.hidden = true
 opt.mouse = "a"
@@ -15,6 +20,7 @@ opt.hlsearch = true
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.softtabstop = 4
+opt.tabstop = 4
 opt.smartcase = true
 opt.smartindent = true
 opt.splitbelow = true

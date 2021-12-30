@@ -3,15 +3,13 @@ local Z = {}
 
 function M.init(use)
   use {
-    'navarasu/onedark.nvim',
+    'junegunn/vim-easy-align',
   }
   return Z;
 end
 
 function Z.setup()
-  vim.cmd [[colorscheme onedark]]
-  require("rods/funcs").toggle_transparency()
-
+  vim.g.easy_align_bypass_fold = 1
 end
 
 return M

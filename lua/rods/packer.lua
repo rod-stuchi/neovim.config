@@ -1,40 +1,41 @@
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost package-manager.lua source <afile> | PackerCompile
-    autocmd BufWritePost */lua/packages/* source <afile> | PackerCompile
+    autocmd BufWritePost */lua/rods/plugins/* source <afile> | PackerCompile
+    autocmd BufWritePost packer.lua source <afile> | PackerCompile
   augroup end
 ]])
 
 -- Bootstrap
-require 'rods/packages/packer-cfg'.setup()
+require 'rods/plugins/packer-cfg'.setup()
 
 local packer = require "packer"
 local use = packer.use
 
 -- Initialize
 packer.reset()
-packer.init(require 'rods/packages/packer-cfg'.init())
+packer.init(require 'rods/plugins/packer-cfg'.init())
 
-
--- Load packages
+-- Load plugins
 use 'wbthomason/packer.nvim'
 
-require "rods/packages/nvim-treesiter".init(use)
-require "rods/packages/nvim-ts-context-commentstring".init(use)
-require "rods/packages/comment".init(use)
-require "rods/packages/bufferline".init(use)
-require "rods/packages/vim-mark".init(use)
-require "rods/packages/fzf".init(use)
-require "rods/packages/fzf-lua".init(use)
-require "rods/packages/hop".init(use)
-require "rods/packages/nvim-tree".init(use) -- also: nerdtree
-require "rods/packages/lualine".init(use)
-require "rods/packages/nvim-ts-autotag".init(use) -- also: tagalong
-require "rods/packages/gitsigns".init(use) -- also: vim-gitgutter
-require "rods/packages/nvim-colorizer".init(use)
-require "rods/packages/vim-easy-align".init(use)
+require "rods/plugins/nvim-treesiter".init(use).setup()
+require "rods/plugins/nvim-ts-context-commentstring".init(use).setup()
+require "rods/plugins/comment".init(use).setup()
+require "rods/plugins/bufferline".init(use).setup()
+require "rods/plugins/vim-mark".init(use).setup()
+require "rods/plugins/fzf".init(use).setup()
+require "rods/plugins/fzf-lua".init(use).setup()
+require "rods/plugins/hop".init(use).setup()
+require "rods/plugins/chadtree".init(use).setup()
+require "rods/plugins/lualine".init(use).setup()
+require "rods/plugins/nvim-ts-autotag".init(use).setup()
+require "rods/plugins/gitsigns".init(use).setup()
+require "rods/plugins/nvim-colorizer".init(use).setup()
+require "rods/plugins/vim-easy-align".init(use).setup()
+require "rods/plugins/nvim-lsp-installer".init(use).setup()
+require "rods/plugins/notify".init(use).setup()
+-- require "rods/plugins/nvim-tree".init(use).setup()
 
 -- Themes
--- require "themes.catppuccin".init(use)
-require "rods/themes/onedark".init(use)
+require "rods/themes/onedark".init(use).setup()

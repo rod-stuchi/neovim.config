@@ -104,9 +104,10 @@ keymap('x', '<Leader>*', '<Plug>MarkIWhiteSet', { noremap = false })
 --}}}
 
 --{{{ nvim-tree
-keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap= true })
-keymap('n', '<C-M-r>', ':NvimTreeRefresh<CR>', { noremap= true })
-keymap('n', '<C-M-n>', ':NvimTreeFindFileToggle<CR>', { noremap= true })
+keymap('n', '<C-n>', ':CHADopen<CR>', { noremap= true })
+-- keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap= true })
+-- keymap('n', '<C-M-r>', ':NvimTreeRefresh<CR>', { noremap= true })
+-- keymap('n', '<C-M-n>', ':NvimTreeFindFileToggle<CR>', { noremap= true })
 -- " NvimTreeOpen, NvimTreeClose, NvimTreeFocus, NvimTreeFindFileToggle, and NvimTreeResize are also available if you need them
 --}}}
 
