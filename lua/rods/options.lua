@@ -42,6 +42,8 @@ opt.sidescrolloff = 8
 opt.title = true
 opt.updatetime = 500
 
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 4
 opt.foldopen:remove({'search'})
 opt.linespace = 4

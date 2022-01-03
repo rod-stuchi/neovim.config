@@ -1,5 +1,7 @@
 local M = {}
 
+vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+
 function M.toggle_transparency()
   vim.g.onedark_transparent_background = not vim.g.onedark_transparent_background
   vim.cmd[[colorscheme onedark]]
