@@ -35,10 +35,16 @@ require "rods/plugins/vim-easy-align".init(use).setup()
 require "rods/plugins/nvim-lsp-installer".init(use).setup()
 require "rods/plugins/notify".init(use).setup()
 require "rods/plugins/lightspeed".init(use).setup()
+require "rods/plugins/nvim-biscuits".init(use).setup()
+
+-- Themes
+require "rods/themes/onedark".init(use).setup()
+
+-- Languages
+require "rods/plugins/rust-tools".init(use)
+
 
 -- disableds
 -- require "rods/plugins/nvim-tree".init(use).setup()
 -- require "rods/plugins/hop".init(use).setup()
 
--- Themes
-require "rods/themes/onedark".init(use).setup()
