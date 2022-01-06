@@ -28,37 +28,37 @@ function Z.setup()
   -- change for Files
   vim.cmd [[
   command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>,
-  \ fzf#vim#with_preview({'options': [
-  \   '--info=inline',
-  \   '--bind=tab:toggle+up,shift-tab:toggle+down,change:top',
-  \ ]})
-  \, <bang>0)
+    \ call fzf#vim#files(<q-args>,
+    \ fzf#vim#with_preview({'options': [
+    \   '--info=inline',
+    \   '--bind=tab:toggle+up,shift-tab:toggle+down,change:top',
+    \ ]})
+    \, <bang>0)
   ]]
 
   -- change for Buffers
   vim.cmd [[
   command! -bang -nargs=? -complete=dir Buffers
-  \ call fzf#vim#buffers(<q-args>,
-  \ fzf#vim#with_preview({'options': [
-  \   '--bind=change:top'
-  \ ]})
-  \, <bang>0)
+    \ call fzf#vim#buffers(<q-args>,
+    \ fzf#vim#with_preview({'options': [
+    \   '--bind=change:top'
+    \ ]})
+    \, <bang>0)
   ]]
 
   -- quickfix list
   vim.cmd [[
   function! s:build_quickfix_list(lines)
-  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
-  copen
-  cc
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
   endfunction
 
   let g:fzf_action = {
-  \ 'ctrl-q': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
+    \ 'ctrl-q': function('s:build_quickfix_list'),
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
 
   let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
   ]]
@@ -69,22 +69,28 @@ function Z.setup()
   xmap <leader><tab> <plug>(fzf-maps-x)
   omap <leader><tab> <plug>(fzf-maps-o)
 
+  " relative "../.." path completation
+  inoremap <expr> <c-x><c-r> fzf#vim#complete("fd <Bar> xargs realpath --relative-to " . expand("%:h"))
+
+  " default path completation
   inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+
+  " complete lines in all project
   inoremap <expr> <c-x><c-k> fzf#vim#complete(fzf#wrap({
-  \ 'prefix': '^.*$',
-  \ 'source': 'rg -n ^ --color always',
-  \ 'options': '--ansi --delimiter : --nth 3..',
-  \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
+    \ 'prefix': '^.*$',
+    \ 'source': 'rg -n ^ --color always',
+    \ 'options': '--ansi --delimiter : --nth 3..',
+    \ 'reducer': { lines -> join(split(lines[0], ':\zs')[2:], '') }}))
   ]]
 
   -- Custom RG function
   vim.cmd [[
   function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
   endfunction
 
   command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
