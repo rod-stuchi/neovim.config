@@ -3,8 +3,8 @@ local M = {}
 vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
 function M.toggle_transparency()
-  vim.g.onedark_transparent_background = not vim.g.onedark_transparent_background
-  vim.cmd[[colorscheme onedark]]
+  require('onedark').setup({transparent = not vim.g.onedark_config.transparent})
+  require('onedark').load()
 
   if not vim.g.onedark_transparent_background then
     vim.cmd [[ highlight LineNrAbove guibg=#1e2127 guifg=#414855 ]]
