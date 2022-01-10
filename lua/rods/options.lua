@@ -52,7 +52,8 @@ opt.shortmess:append "c"
 
 opt.backup = false
 opt.swapfile = false
-opt.undofile = false
+opt.undofile = true
+opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 
 opt.cmdheight = 1
 

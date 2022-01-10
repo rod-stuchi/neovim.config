@@ -2,6 +2,7 @@ vim.g.mapleader = ","
 vim.b.mapleader = ","
 
 require("rods/globals")
+require("rods/funcs")
 require("rods/packer")
 require("rods/options")
 require("rods/mappings")

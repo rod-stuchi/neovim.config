@@ -51,9 +51,14 @@ keymap('n', '<F6>', 'i<C-R>=strftime("%Y-%m-%d")<CR><Esc>l', { noremap = true })
 -- dd/mmm (ddd), like 15/mar (qui)
 keymap('n', '<F7>', ':lang pt_BR.UTF-8<CR>:let @@=strftime("%d/%b (%a)")<CR>:normal! p<esc>o<esc>:lang en_US.UTF-8<CR>', opts)
 
+-- maximize
 keymap('n', '<C-w>o', ':mksession! /tmp/vim-session.vim<CR>:wincmd o<CR>', opts)
 keymap('n', '<C-w>u', ':source /tmp/vim-session.vim<CR>', opts)
 
+-- commands with preserve
+keymap('n', 'yip', [[ :lua preserve('normal! yip')<CR>2h ]], opts)
+keymap('n', 'yiw', [[ :lua preserve('normal! yiw')<CR>2h ]], opts)
+keymap('n', '<space>=', [[ :lua preserve('normal! gg=G')<CR>2h ]], opts)
 
 -- moving lines
 keymap('n', '<A-j>', ':m .+1<CR>==', { noremap = true })
@@ -92,7 +97,6 @@ nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR> :echom "copied: [" . expa
 
 ]]
 --}}}
-
 
 
 --{{{ vim-mark
