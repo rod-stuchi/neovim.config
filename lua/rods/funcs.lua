@@ -34,6 +34,9 @@ vim.cmd([[
   exec 'source' home . '/.config/nvim/lua/rods/vim-funcs/center_cursor.vim'
 ]])
 
+-- ref:
+-- https://dev.to/voyeg3r/my-ever-growing-neovim-init-lua-h0p
+-- https://dev.to/voyeg3r/writing-useful-lua-functions-to-my-neovim-14ki
 M.preserve = function(arguments)
     local args = string.format("keepjumps keeppatterns execute %q", arguments)
     -- local original_cursor = vim.fn.winsaveview()

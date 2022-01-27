@@ -4,6 +4,9 @@ local Z = {}
 function M.init(use)
   use {
     'nvim-treesitter/nvim-treesitter',
+    requires = {
+      'yioneko/nvim-yati' -- TODO temporary plugin
+    },
     run = '<Cmd>TSUpdate',
   }
   return Z;
@@ -16,9 +19,9 @@ function Z.setup()
   end
 
   lib.setup({
-    autotag = {
-      enable = true,
-    },
+    autotag = { enable = true },
+    yati = { enable = true },
+
     context_commentstring = {
       enable = true
     },
@@ -53,7 +56,9 @@ function Z.setup()
       enable = true,
     },
     indent = {
-      enable = true
+      enable = true,
+      -- https://www.reddit.com/r/neovim/comments/s4ki71/strange_indentation_quirk_when_writing_loops_in/
+      -- disable = {'python'}
     },
     incremental_selection = {
       enable = true,

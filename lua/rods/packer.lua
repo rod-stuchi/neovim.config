@@ -37,6 +37,10 @@ require "rods/plugins/notify".init(use).setup()
 require "rods/plugins/lightspeed".init(use).setup()
 require "rods/plugins/nvim-biscuits".init(use).setup()
 
+-- autocomplete
+require "rods/plugins/luasnip".init(use).setup()
+require "rods/plugins/nvim-cmp".init(use).setup()
+
 -- Themes
 require "rods/themes/onedark".init(use).setup()
 

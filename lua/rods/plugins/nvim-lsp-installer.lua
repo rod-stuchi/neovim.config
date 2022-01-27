@@ -52,8 +52,10 @@ function Z.setup()
 
   lsp_installer.on_server_ready(function(server)
 
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     local opts = {
+      capabilities = capabilities,
       on_attach = function(client, bufnr)
         if client.name == "tsserver" then
           client.resolved_capabilities.document_formatting = false
@@ -62,12 +64,6 @@ function Z.setup()
         -- lsp_highlight_document(client)
       end
     }
-    -- vim.notify("nvim-lsp-installer::config::on_server_ready", "info")
-
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tsserver" then
-    --     opts.root_dir = function() ... end
-    -- end
 
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
