@@ -38,7 +38,6 @@ function Z.setup()
   end
 
   lspkind.init {
-    with_text = true,
     symbol_map = {
       Text = "",
       Method = "",
