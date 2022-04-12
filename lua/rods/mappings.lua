@@ -107,8 +107,11 @@ keymap('n', '<Leader>-*', '<Plug>MarkSearchUsedGroupPrev', { noremap = false })
 keymap('x', '<Leader>*', '<Plug>MarkIWhiteSet', { noremap = false })
 --}}}
 
---{{{ chadtree
-keymap('n', '<C-n>', ':CHADopen<CR>', { noremap= true })
+--{{{ neo-tree
+keymap('n', '<C-n>', ':Neotree filesystem toggle<CR>', { noremap= true })
+keymap('n', '<C-A-n>', ':NeoTreeRevealToggle<CR>', { noremap= true })
+keymap('n', '<C-A-g>', ':Neotree git_status float<CR>', { noremap= true })
+keymap('n', '\\', ':Neotree buffers toggle<CR>', { noremap= true })
 --}}}
 
 --{{{ bufferline
