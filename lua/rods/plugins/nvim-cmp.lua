@@ -85,6 +85,10 @@ function Z.setup()
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
     mapping = {
       -- 0- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
       ["<Tab>"] = cmp.mapping(function(fallback)
@@ -120,9 +124,6 @@ function Z.setup()
         c = cmp.mapping.close(),
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    },
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
     sources = {
       { name = 'nvim_lsp' },

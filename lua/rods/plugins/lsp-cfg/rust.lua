@@ -2,48 +2,40 @@ local M = {}
 
 local config = {
   tools = { -- rust-tools options
-    -- Automatically set inlay hints (type hints)
-    autoSetHints = true,
-
-    -- Whether to show hover actions inside the hover window
-    -- This overrides the default hover handler
-    hover_with_actions = true,
 
     -- how to execute terminal commands
     -- options right now: termopen / quickfix
     executor = require("rust-tools/executors").termopen,
 
-    runnables = {
-      use_telescope = false
-    },
+    -- callback to execute once rust-analyzer is done initializing the workspace
+    -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
+    on_initialized = nil,
 
-    debuggables = {
-      use_telescope = false
-    },
+    -- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
+    reload_workspace_from_cargo_toml = true,
 
     -- These apply to the default RustSetInlayHints command
     inlay_hints = {
+      -- automatically set inlay hints (type hints)
+      -- default: true
+      auto = true,
 
       -- Only show inlay hints for the current line
       only_current_line = false,
 
-      -- Event which triggers a refersh of the inlay hints.
-      -- You can make this "CursorMoved" or "CursorMoved,CursorMovedI" but
-      -- not that this may cause  higher CPU usage.
-      -- This option is only respected when only_current_line and
-      -- autoSetHints both are true.
-      only_current_line_autocmd = "CursorHold",
-
-      -- wheter to show parameter hints with the inlay hints or not
+      -- whether to show parameter hints with the inlay hints or not
+      -- default: true
       show_parameter_hints = true,
 
       -- prefix for parameter hints
-      parameter_hints_prefix = " <- ",
+      -- default: "<-"
+      parameter_hints_prefix = "<- ",
 
       -- prefix for all the other hints (type, chaining)
-      other_hints_prefix = " => ",
+      -- default: "=>"
+      other_hints_prefix = "=> ",
 
-      -- whether to align to the length of the longest line in the file
+      -- whether to align to the lenght of the longest line in the file
       max_len_align = false,
 
       -- padding from the left if max_len_align is true
@@ -59,18 +51,25 @@ local config = {
       highlight = "Comment",
     },
 
+    -- options same as lsp hover / vim.lsp.util.open_floating_preview()
     hover_actions = {
+
       -- the border that is used for the hover window
       -- see vim.api.nvim_open_win()
       border = {
-        {"╭", "FloatBorder"}, {"─", "FloatBorder"},
-        {"╮", "FloatBorder"}, {"│", "FloatBorder"},
-        {"╯", "FloatBorder"}, {"─", "FloatBorder"},
-        {"╰", "FloatBorder"}, {"│", "FloatBorder"}
+        { "╭", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "╮", "FloatBorder" },
+        { "│", "FloatBorder" },
+        { "╯", "FloatBorder" },
+        { "─", "FloatBorder" },
+        { "╰", "FloatBorder" },
+        { "│", "FloatBorder" },
       },
 
       -- whether the hover action window gets automatically focused
-      auto_focus = false
+      -- default: false
+      auto_focus = false,
     },
 
     -- settings for showing the crate graph based on graphviz and the dot
@@ -87,8 +86,68 @@ local config = {
       -- true for all crates.io and external crates, false only the local
       -- crates
       -- default: true
-      full = false,
-    }
+      full = true,
+
+      -- List of backends found on: https://graphviz.org/docs/outputs/
+      -- Is used for input validation and autocompletion
+      -- Last updated: 2021-08-26
+      enabled_graphviz_backends = {
+        "bmp",
+        "cgimage",
+        "canon",
+        "dot",
+        "gv",
+        "xdot",
+        "xdot1.2",
+        "xdot1.4",
+        "eps",
+        "exr",
+        "fig",
+        "gd",
+        "gd2",
+        "gif",
+        "gtk",
+        "ico",
+        "cmap",
+        "ismap",
+        "imap",
+        "cmapx",
+        "imap_np",
+        "cmapx_np",
+        "jpg",
+        "jpeg",
+        "jpe",
+        "jp2",
+        "json",
+        "json0",
+        "dot_json",
+        "xdot_json",
+        "pdf",
+        "pic",
+        "pct",
+        "pict",
+        "plain",
+        "plain-ext",
+        "png",
+        "pov",
+        "ps",
+        "ps2",
+        "psd",
+        "sgi",
+        "svg",
+        "svgz",
+        "tga",
+        "tiff",
+        "tif",
+        "tk",
+        "vml",
+        "vmlz",
+        "wbmp",
+        "webp",
+        "xlib",
+        "x11",
+      },
+    },
   },
 
   -- all the opts to send to nvim-lspconfig
@@ -103,11 +162,11 @@ local config = {
   -- debugging stuff
   dap = {
     adapter = {
-      type = 'executable',
-      command = 'lldb-vscode',
-      name = "rt_lldb"
-    }
-  }
+      type = "executable",
+      command = "lldb-vscode",
+      name = "rt_lldb",
+    },
+  },
 }
 
 function M.config(server, opts)
