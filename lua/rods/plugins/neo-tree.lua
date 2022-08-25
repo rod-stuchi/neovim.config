@@ -26,7 +26,8 @@ function Z.setup()
           mappings = {
             ["o"] = "open",
           }
-        }
+        },
+        hijack_netrw_behavior = "disabled"
       }
   })
 

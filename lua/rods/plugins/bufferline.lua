@@ -17,21 +17,21 @@ function Z.setup()
 
   lib.setup({
     highlights = {
-      buffer_selected             = { gui = "bold", },
-      diagnostic_selected         = { gui = "bold", },
-      info_selected               = { gui = "bold", },
-      info_diagnostic_visible     = { gui = "bold", },
-      info_diagnostic_selected    = { gui = "bold", },
-      warning_selected            = { gui = "bold", },
-      warning_diagnostic_selected = { gui = "bold", },
-      error_selected              = { gui = "bold", },
-      error_diagnostic_selected   = { gui = "bold", },
-      duplicate_selected          = { gui = "italic", },
-      duplicate_visible           = { gui = "italic", },
-      duplicate                   = { gui = "italic", },
-      pick_selected               = { gui = "bold", },
-      pick_visible                = { gui = "bold", },
-      pick                        = { gui = "bold", }
+      buffer_selected             = { bold = true, italic = false },
+      diagnostic_selected         = { bold = true, italic = false },
+      info_selected               = { bold = true, italic = false },
+      info_diagnostic_visible     = { bold = true, italic = false },
+      info_diagnostic_selected    = { bold = true, italic = false },
+      warning_selected            = { bold = true, italic = false },
+      warning_diagnostic_selected = { bold = true, italic = false },
+      error_selected              = { bold = true, italic = false },
+      error_diagnostic_selected   = { bold = true, italic = false },
+      duplicate_selected          = { italic = true },
+      duplicate_visible           = { italic = true },
+      duplicate                   = { italic = true },
+      pick_selected               = { bold = true, italic = false },
+      pick_visible                = { bold = true, italic = false },
+      pick                        = { bold = true, italic = false }
     },
     options = {
       diagnostics = "nvim_lsp",
@@ -57,10 +57,13 @@ function Z.setup()
       show_buffer_close_icons = false,
       right_mouse_command = '',
       middle_mouse_command = 'bdelete! %d',
-      indicator_icon = '', -- '', '▎'
+      indicator = {
+        icon = '▎',
+        style = 'icon',
+      },
       offsets = {
         {
-          filetype = "NvimTree",
+          filetype = "neo-tree",
           text = "File Explorer",
           highlight = "Directory",
           text_align = "left"
@@ -69,10 +72,10 @@ function Z.setup()
       -- numbers = function(opts)
       --   return string.format('%s|%s', opts.id, opts.lower(opts.ordinal))
       -- end,
-      -- numbers = function(opts)
-      --   return string.format('%s', opts.lower(opts.id))
-      -- end,
-      numbers = 'none',
+      numbers = function(opts)
+        return string.format('%s', opts.lower(opts.ordinal))
+      end,
+      -- numbers = 'none',
     },
   })
 end

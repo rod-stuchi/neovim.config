@@ -3,7 +3,7 @@
 
 local opts = {noremap = true, silent = true}
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 -- P(keymap)
 
 
@@ -58,7 +58,7 @@ keymap('n', '<C-w>u', ':source /tmp/vim-session.vim<CR>', opts)
 -- commands with preserve
 keymap('n', 'yip', [[ :lua preserve('normal! yip')<CR>2h ]], opts)
 keymap('n', 'yiw', [[ :lua preserve('normal! yiw')<CR>2h ]], opts)
-keymap('n', '<space>=', [[ :lua preserve('normal! gg=G')<CR>2h ]], opts)
+keymap('n', '<space>==', [[ :lua preserve('normal! gg=G')<CR>2h ]], opts)
 
 -- moving lines
 keymap('n', '<A-j>', ':m .+1<CR>==', { noremap = true })
@@ -67,6 +67,9 @@ keymap('i', '<A-j>', '<Esc>:m .+1<CR>==gi', { noremap = true })
 keymap('i', '<A-k>', '<Esc>:m .-2<CR>==gi', { noremap = true })
 keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true })
 keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true })
+
+-- format JS/JSX
+keymap('n', '<leader>w', ':!npx prettier --write %; npx eslint --fix %<CR><CR>', opts)
 --}}}
 
 --{{{ customs :: visual
@@ -120,15 +123,16 @@ keymap('n', 'gx', ':BufferLinePickClose<CR>', opts)
 keymap('n', '<A-,>', '<Cmd>BufferLineMovePrev<CR>', opts)
 keymap('n', '<A-.>', '<Cmd>BufferLineMoveNext<CR>', opts)
 
-keymap('n', '<Leader>.1', '<Cmd>BufferLineGoToBuffer 1<CR>', opts)
-keymap('n', '<Leader>.2', '<Cmd>BufferLineGoToBuffer 2<CR>', opts)
-keymap('n', '<Leader>.3', '<Cmd>BufferLineGoToBuffer 3<CR>', opts)
-keymap('n', '<Leader>.4', '<Cmd>BufferLineGoToBuffer 4<CR>', opts)
-keymap('n', '<Leader>.5', '<Cmd>BufferLineGoToBuffer 5<CR>', opts)
-keymap('n', '<Leader>.6', '<Cmd>BufferLineGoToBuffer 6<CR>', opts)
-keymap('n', '<Leader>.7', '<Cmd>BufferLineGoToBuffer 7<CR>', opts)
-keymap('n', '<Leader>.8', '<Cmd>BufferLineGoToBuffer 8<CR>', opts)
-keymap('n', '<Leader>.9', '<Cmd>BufferLineGoToBuffer 9<CR>', opts)
+keymap('n', '<Leader>1', '<cmd>lua require("bufferline").go_to_buffer(1, true)<cr>', opts)
+keymap('n', '<Leader>2', '<cmd>lua require("bufferline").go_to_buffer(2, true)<cr>', opts)
+keymap('n', '<Leader>3', '<cmd>lua require("bufferline").go_to_buffer(3, true)<cr>', opts)
+keymap('n', '<Leader>4', '<cmd>lua require("bufferline").go_to_buffer(4, true)<cr>', opts)
+keymap('n', '<Leader>5', '<cmd>lua require("bufferline").go_to_buffer(5, true)<cr>', opts)
+keymap('n', '<Leader>6', '<cmd>lua require("bufferline").go_to_buffer(6, true)<cr>', opts)
+keymap('n', '<Leader>7', '<cmd>lua require("bufferline").go_to_buffer(7, true)<cr>', opts)
+keymap('n', '<Leader>8', '<cmd>lua require("bufferline").go_to_buffer(8, true)<cr>', opts)
+keymap('n', '<Leader>9', '<cmd>lua require("bufferline").go_to_buffer(9, true)<cr>', opts)
+keymap('n', '<Leader>$', '<cmd>lua require("bufferline").go_to_buffer(-1, true)<cr>', opts)
 --}}}
 
 --{{{ harpoon
@@ -166,4 +170,8 @@ keymap('n', 'ga', '<Plug>(EasyAlign)', {})
 
 --{{{ nvim-biscuits
 keymap('n', 'tb', ':lua require("nvim-biscuits").toggle_biscuits()<CR>', opts)
+--}}}
+--
+--{{{ rnvimr Ranger
+keymap('n', '<Leader>o', ':RnvimrToggle<CR>', opts)
 --}}}

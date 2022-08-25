@@ -77,19 +77,15 @@ function Z.setup()
       keyword_length = 2,
     },
     snippet = {
-      -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
         luasnip.lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
       -- 0- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -124,10 +120,11 @@ function Z.setup()
         c = cmp.mapping.close(),
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    },
-    sources = {
+    }),
+    sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = "treesitter" },
+      { name = 'path' },
       { name = 'luasnip' },
       {
           name = "buffer",
@@ -138,7 +135,7 @@ function Z.setup()
           },
       },
       -- { name = "spell" },
-    },
+    }),
 
     formatting = {
       format = function(entry, vim_item)
@@ -160,6 +157,24 @@ function Z.setup()
 
   })
 
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+    { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+    { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -169,21 +184,6 @@ function Z.setup()
     capabilities = capabilities
   }
 
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline('/', {
-    sources = {
-    { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-    { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-      })
-  })
 end
 
 return M
