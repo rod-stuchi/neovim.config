@@ -25,6 +25,8 @@ local function lsp_keymaps(bufnr)
 
   bkeymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   bkeymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  bkeymap(bufnr, 'n', 'gvd', '<cmd>vsp<CR><cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  bkeymap(bufnr, 'n', 'gsd', '<cmd>sp<CR><cmd>lua vim.lsp.buf.definition()<CR>', opts)
   bkeymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   bkeymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   bkeymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)

@@ -175,3 +175,11 @@ keymap('n', 'tb', ':lua require("nvim-biscuits").toggle_biscuits()<CR>', opts)
 --{{{ rnvimr Ranger
 keymap('n', '<Leader>o', ':RnvimrToggle<CR>', opts)
 --}}}
+
+
+--{{{ goto-preview
+keymap('n', 'gpd', '<cmd> lua require("goto-preview").goto_preview_definition()<CR>', {noremap=true})
+keymap('n', 'gpt', '<cmd> lua require("goto-preview").goto_preview_type_definition()<CR>', {noremap=true})
+keymap('n', 'gpi', '<cmd> lua require("goto-preview").goto_preview_implementation()<CR>', {noremap=true})
+keymap('n', 'gP',  '<cmd> lua require("goto-preview").close_all_win()<CR>', opts)
+--}}}
