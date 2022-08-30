@@ -79,7 +79,12 @@ keymap('v', ':', ';', { noremap = true })
 
 --{{{ customs :: insert
 -- inoremap <F5> <C-R>=strftime("%Y-%m-%d")<CR>
-keymap('i', '<F6>', '<C-R>=strftime("%Y-%m-%d")<CR>', { noremap = true })
+keymap('i', '<F6>', '<C-r>=strftime("%Y-%m-%d")<CR>', { noremap = true })
+keymap('i', 'UU', '<C-r>=system("uuidgen -r | tr -d \'\\n\'")<CR>', { noremap = true })
+keymap('i', 'CPF', '<C-r>=system("cpf | tr -d \'\\n\'")<CR>', { noremap = true })
+keymap('i', 'CPFF', '<C-r>=system("cpf -m | tr -d \'\\n\'")<CR>', { noremap = true })
+keymap('i', 'PWD', '<C-r>=expand("%")<CR>', { noremap = true })
+
 --}}}
 
 --{{{ leader
