@@ -9,6 +9,7 @@ function M.init(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
       'onsails/lspkind-nvim',
       "ray-x/cmp-treesitter",
     },
@@ -123,6 +124,7 @@ function Z.setup()
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
+      { name = 'nvim_lsp_signature_help' },
       { name = "treesitter" },
       { name = 'path' },
       { name = 'luasnip' },

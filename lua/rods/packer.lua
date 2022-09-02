@@ -45,7 +45,8 @@ require "rods/plugins/luasnip".init(use).setup()
 require "rods/plugins/nvim-cmp".init(use).setup()
 
 -- Themes
-require "rods/themes/onedark".init(use).setup()
+-- require "rods/themes/onedark".init(use).setup()
+require "rods/themes/kanagawa".init(use).setup()
 
 -- Languages
 require "rods/plugins/rust-tools".init(use)

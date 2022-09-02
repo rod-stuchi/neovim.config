@@ -57,3 +57,4 @@ opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 
 opt.cmdheight = 1
 
+opt.laststatus = 3

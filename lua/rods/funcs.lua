@@ -3,18 +3,27 @@ local M = {}
 vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
 function M.toggle_transparency()
-  require('onedark').setup({transparent = not vim.g.onedark_config.transparent})
-  require('onedark').load()
+  local theme = vim.g.colors_name
+  local hasBackground = vim.api.nvim_get_hl_by_name("Normal", true)['background']
+  require(theme).setup({
+    dimInactive = (hasBackground == nil),
+    transparent = (hasBackground ~= nil),
+  })
+  vim.cmd("colorscheme " .. theme)
 
-  if not vim.g.onedark_transparent_background then
-    vim.cmd [[ highlight LineNrAbove guibg=#1e2127 guifg=#414855 ]]
-    vim.cmd [[ highlight LineNr guifg=#93a2bf ]]
-    vim.cmd [[ highlight LineNrBelow guibg=#1e2127 guifg=#414855 ]]
-  else
-    vim.cmd [[ highlight LineNrAbove guifg=#6c6c6c ]]
-    vim.cmd [[ highlight LineNr guifg=#c3c3c3 ]]
-    vim.cmd [[ highlight LineNrBelow guifg=#6c6c6c ]]
+  if (hasBackground == nil) then
+    vim.cmd [[ highlight NormalNC  guifg=#C8C093 guibg=#0d0d11 ]]
   end
+
+  -- if not vim.g.onedark_transparent_background then
+  --   vim.cmd [[ highlight LineNrAbove guibg=#1e2127 guifg=#414855 ]]
+  --   vim.cmd [[ highlight LineNr guifg=#93a2bf ]]
+  --   vim.cmd [[ highlight LineNrBelow guibg=#1e2127 guifg=#414855 ]]
+  -- else
+  --   vim.cmd [[ highlight LineNrAbove guifg=#6c6c6c ]]
+  --   vim.cmd [[ highlight LineNr guifg=#c3c3c3 ]]
+  --   vim.cmd [[ highlight LineNrBelow guifg=#6c6c6c ]]
+  -- end
 end
 
 function _G.preserve(cmd)
