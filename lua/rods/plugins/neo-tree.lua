@@ -31,8 +31,6 @@ function Z.setup()
       }
   })
 
-  -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-  -- vim.cmd([[nnoremap \ :Neotree buffers toggle<cr>]])
 end
 
 return M

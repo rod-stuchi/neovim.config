@@ -34,18 +34,18 @@ require "rods/plugins/gitsigns".init(use).setup()
 require "rods/plugins/nvim-colorizer".init(use).setup()
 require "rods/plugins/vim-easy-align".init(use).setup()
 require "rods/plugins/nvim-lsp-installer".init(use).setup()
+require "rods/plugins/nvim-navic".init(use).setup()
 require "rods/plugins/notify".init(use).setup()
 require "rods/plugins/lightspeed".init(use).setup()
 require "rods/plugins/nvim-biscuits".init(use).setup()
 require "rods/plugins/goto-preview".init(use).setup()
--- require "rods/plugins/shade".init(use).setup()
+require "rods/plugins/tint".init(use).setup()
 
 -- autocomplete
 require "rods/plugins/luasnip".init(use).setup()
 require "rods/plugins/nvim-cmp".init(use).setup()
 
 -- Themes
--- require "rods/themes/onedark".init(use).setup()
 require "rods/themes/kanagawa".init(use).setup()
 
 -- Languages
@@ -53,6 +53,7 @@ require "rods/plugins/rust-tools".init(use)
 
 
 -- disableds
+-- require "rods/themes/onedark".init(use).setup()
 -- require "rods/plugins/nvim-tree".init(use).setup()
 -- require "rods/plugins/hop".init(use).setup()
-
+-- require "rods/plugins/shade".init(use).setup()

@@ -52,17 +52,24 @@ function Z.setup()
     return;
   end
 
+  local ok_navic, navic = pcall(require, 'nvim-navic')
+
   lsp_installer.on_server_ready(function(server)
 
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     local opts = {
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         if client.name == "tsserver" then
-          client.resolved_capabilities.document_formatting = false
+          client.server_capabilities.documentFormattingProvider = false
         end
         lsp_keymaps(bufnr)
+        if server.name ~= "cssmodules_ls" then
+            if ok_navic then
+              navic.attach(client, bufnr)
+            end
+        end
         -- lsp_highlight_document(client)
       end
     }

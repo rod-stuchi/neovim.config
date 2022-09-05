@@ -1,29 +1,43 @@
 local M = {}
 
-vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
+
+function M.setCustomHighLights()
+  -- Line Column Colors
+  vim.cmd [[ highlight LineNrAbove guibg=#1e2127 guifg=#414855 ]]
+  vim.cmd [[ highlight LineNr guifg=#93a2bf ]]
+  vim.cmd [[ highlight LineNrBelow guibg=#1e2127 guifg=#414855 ]]
+  -- git
+  vim.cmd [[ highlight SignColumn  guibg=#1e2127 ]]
+  vim.cmd [[ highlight GitSignsAdd  guibg=#1e2127 ]]
+  vim.cmd [[ highlight GitSignsChange  guibg=#1e2127 ]]
+  vim.cmd [[ highlight GitSignsDelete  guibg=#1e2127 ]]
+  -- lsp
+  vim.cmd [[ highlight DiagnosticInfo guibg=#1e2127 ]]
+  vim.cmd [[ highlight DiagnosticError guibg=#1e2127 ]]
+  vim.cmd [[ highlight DiagnosticWarn guibg=#1e2127 ]]
+  vim.cmd [[ highlight DiagnosticHint guibg=#1e2127 ]]
+
+
+-- vim.cmd([[au VimEnter * highlight Folded guifg=#465a7d]])
+-- vim.cmd([[au ColorScheme * highlight Folded guifg=#465a7d]])
+
+-- vim.cmd([[au VimEnter * highlight IncSearch guifg=#ab7f54 guibg=#00000000 ]])
+-- vim.cmd([[au ColorScheme * highlight IncSearch guifg=#ab7f54 guibg=#00000000 ]])
+
+end
 
 function M.toggle_transparency()
   local theme = vim.g.colors_name
   local hasBackground = vim.api.nvim_get_hl_by_name("Normal", true)['background']
   require(theme).setup({
-    dimInactive = (hasBackground == nil),
+    unpack(require(theme).config),
     transparent = (hasBackground ~= nil),
+    dimInactive = (hasBackground == nil),
   })
+
   vim.cmd("colorscheme " .. theme)
-
-  if (hasBackground == nil) then
-    vim.cmd [[ highlight NormalNC  guifg=#C8C093 guibg=#0d0d11 ]]
-  end
-
-  -- if not vim.g.onedark_transparent_background then
-  --   vim.cmd [[ highlight LineNrAbove guibg=#1e2127 guifg=#414855 ]]
-  --   vim.cmd [[ highlight LineNr guifg=#93a2bf ]]
-  --   vim.cmd [[ highlight LineNrBelow guibg=#1e2127 guifg=#414855 ]]
-  -- else
-  --   vim.cmd [[ highlight LineNrAbove guifg=#6c6c6c ]]
-  --   vim.cmd [[ highlight LineNr guifg=#c3c3c3 ]]
-  --   vim.cmd [[ highlight LineNrBelow guifg=#6c6c6c ]]
-  -- end
+  M.setCustomHighLights()
 end
 
 function _G.preserve(cmd)
