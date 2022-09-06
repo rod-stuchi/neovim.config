@@ -102,8 +102,10 @@ nnoremap <leader>cd :cd %:p:h<CR> :echom "CD to [" . expand("%:p:h") . "]"<CR>
 nnoremap <silent> <Leader>cn :let @+=expand("%")<CR> :echom "copied: [" . expand("%") . "] use ctrl+v"<CR>
 " copy file path to clipboard
 nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR> :echom "copied: [" . expand("%:p") . "] use ctrl+v"<CR>
-
 ]]
+
+-- tip from: https://stackoverflow.com/a/60948057/6785523
+keymap('n', '<Leader>x', '<cmd>%bd|e#|bd#<cr>', opts)
 --}}}
 
 
