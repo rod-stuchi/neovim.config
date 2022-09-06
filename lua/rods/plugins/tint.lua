@@ -8,15 +8,15 @@ function M.init(use)
 end
 
 function Z.setup()
-  -- local ok, lib = pcall(require, 'tint')
-  -- if not ok then
-  --   return;
-  -- end
+  local ok, lib = pcall(require, 'tint')
+  if not ok then
+    return;
+  end
 
-  -- lib.setup({
-  --   bg = false,
-  --   amt = -50,
-  -- })
+  lib.setup({
+    bg = false,
+    amt = -50,
+  })
 end
 
 return M
