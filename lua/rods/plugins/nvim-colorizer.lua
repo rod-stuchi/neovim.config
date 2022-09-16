@@ -1,9 +1,10 @@
 local M = {}
 local Z = {}
 
+-- 'norcalli/nvim-colorizer.lua',
 function M.init(use)
   use {
-    'norcalli/nvim-colorizer.lua',
+    'NvChad/nvim-colorizer.lua',
   }
   return Z;
 end
@@ -15,7 +16,11 @@ function Z.setup()
   end
 
   vim.opt.termguicolors = true
-  lib.setup()
+  lib.setup({
+    user_default_options = {
+      -- mode = "virtualtext"
+    }
+  })
 end
 
 return M

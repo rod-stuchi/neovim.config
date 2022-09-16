@@ -106,6 +106,9 @@ nnoremap <silent> <Leader>cp :let @+=expand("%:p")<CR> :echom "copied: [" . expa
 
 -- tip from: https://stackoverflow.com/a/60948057/6785523
 keymap('n', '<Leader>x', '<cmd>%bd|e#|bd#<cr>', opts)
+
+-- reload snippets
+keymap('n', '<leader><leader>s', "<cmd>source ~/.config/nvim/lua/rods/plugins/luasnip.lua<cr>")
 --}}}
 
 

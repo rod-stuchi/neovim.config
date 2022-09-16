@@ -1,10 +1,14 @@
-local opt = vim.opt -- set-option
--- local bo = vim.bo   -- buffer-scoped
+local opt = vim.opt -- set option
+local g = vim.g -- set global
 
-vim.g["python_host_prog"] = "/usr/bin/python2"
-vim.g["python3_host_prog"] = "/usr/bin/python3"
+g["python_host_prog"] = "/usr/bin/python2"
+g["python3_host_prog"] = "/usr/bin/python3"
 
 vim.cmd("syntax on")
+
+-- ref: https://github.com/neovim/neovim/pull/15391
+-- feat(treesitter): highlighting for core languages, enabled for Lua
+g.ts_highlight_lua = true
 
 opt.hidden = true
 opt.mouse = "a"
@@ -58,3 +62,5 @@ opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 opt.cmdheight = 1
 
 opt.laststatus = 3
+
+opt.fillchars:append('fold:•')

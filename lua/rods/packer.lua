@@ -39,7 +39,10 @@ require "rods/plugins/notify".init(use).setup()
 require "rods/plugins/lightspeed".init(use).setup()
 require "rods/plugins/nvim-biscuits".init(use).setup()
 require "rods/plugins/goto-preview".init(use).setup()
-require "rods/plugins/tint".init(use).setup()
+require "rods/plugins/fidget".init(use).setup()
+require "rods/plugins/diffview".init(use).setup()
+require "rods/plugins/pretty-fold".init(use).setup()
+require "rods/plugins/tint".init(use) --.setup()
 
 -- autocomplete
 require "rods/plugins/luasnip".init(use).setup()
