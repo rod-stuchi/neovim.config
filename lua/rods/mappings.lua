@@ -56,8 +56,9 @@ keymap('n', '<C-w>o', ':mksession! /tmp/vim-session.vim<CR>:wincmd o<CR>', opts)
 keymap('n', '<C-w>u', ':source /tmp/vim-session.vim<CR>', opts)
 
 -- commands with preserve
-keymap('n', 'yip', [[ :lua preserve('normal! yip')<CR>2h ]], opts)
-keymap('n', 'yiw', [[ :lua preserve('normal! yiw')<CR>2h ]], opts)
+-- disabled because when at the end of a word, yiw do not work
+-- keymap('n', 'yip', [[ :lua preserve('normal! yip')<CR>2h ]], opts)
+-- keymap('n', 'yiw', [[ :lua preserve('normal! yiw')<CR> ]])
 keymap('n', '<space>==', [[ :lua preserve('normal! gg=G')<CR>2h ]], opts)
 
 -- moving lines

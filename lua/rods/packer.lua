@@ -43,6 +43,7 @@ require "rods/plugins/fidget".init(use).setup()
 require "rods/plugins/diffview".init(use).setup()
 require "rods/plugins/pretty-fold".init(use).setup()
 require "rods/plugins/tint".init(use) --.setup()
+require "rods/plugins/firenvim".init(use).setup()
 
 -- autocomplete
 require "rods/plugins/luasnip".init(use).setup()

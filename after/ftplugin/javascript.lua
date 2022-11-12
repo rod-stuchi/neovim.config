@@ -6,3 +6,8 @@ bo.shiftwidth = 2
 bo.softtabstop = 2
 bo.tabstop = 2
 
+vim.cmd[[
+iab clg console.log("")<Left><Left>
+iab clge console.error()<Left>
+]]
+

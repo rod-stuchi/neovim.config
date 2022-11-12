@@ -8,6 +8,7 @@ require("rods/options")
 require("rods/mappings")
 require("rods/autocmds")
 
+require("rods/abbreviation/abbrev").setup()
 require("rods/funcs").setCustomHighLights()
 
 -- vim.lsp.set_log_level("debug")
