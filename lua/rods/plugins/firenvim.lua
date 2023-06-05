@@ -19,9 +19,10 @@ function Z.setup()
     function! OnUIEnter(event) abort
       if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
         set laststatus=0
-        set spell spelllang=pt,en_us
-        " set lines=100
+        set spell spelllang=en_us,pt
+        " set lines=15
         " set columns=300
+        autocmd BufRead,BufNewFile * start
       endif
     endfunction
     autocmd UIEnter * call OnUIEnter(deepcopy(v:event))

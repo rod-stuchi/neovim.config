@@ -27,3 +27,8 @@ schumann
 PostgreSQL
 timeframe
 destructuring
+config
+json
+jq
+stderr
+terraform

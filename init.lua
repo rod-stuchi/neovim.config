@@ -1,15 +1,15 @@
 vim.g.mapleader = ","
 vim.b.mapleader = ","
 
-require("rods/globals")
-require("rods/funcs")
-require("rods/packer")
-require("rods/options")
-require("rods/mappings")
-require("rods/autocmds")
+require("rods/globals")    -- 🟩 done
+require("rods/funcs")      -- 🟩 done
+require("rods/packer")     -- 🟩 done
+require("rods/options")    -- 🟩 done
+require("rods/mappings")   -- 🟩 done
+require("rods/autocmds")   -- 🟩 done
 
-require("rods/abbreviation/abbrev").setup()
-require("rods/funcs").setCustomHighLights()
+require("rods/abbreviation/abbrev").setup()  -- 🟩 done
+require("rods/funcs").setCustomHighLights()  -- 🟩 done
 
 -- vim.lsp.set_log_level("debug")
 -- :lua vim.cmd('e'..vim.lsp.get_log_path())
